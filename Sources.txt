@@ -1,0 +1,10 @@
+[The Machine Learning Behind Farecast](https://medium.com/@neal_lathia/reading-the-machine-learning-behind-farecast-ca67cbd48665)
+
+[When To Hold Out For A Lower Airfare](https://fivethirtyeight.com/features/when-to-hold-out-for-a-lower-airfare)
+
+[Are your travel habits making journeys more expensive?](http://www.bbc.com/news/uk-england-london-13389363)
+
+
+"Part of predicting a flight price seems to be about decoding the hidden decision engine that carriers use to set their own prices: perhaps a current route’s price is based on available seats, on demand, on competitor’s prices, on the time of year, or a multitude of other factors. Given that there are so many different reasons why flight prices may change (and we do not necessarily have access to all the data that providers are using to set prices), could we ever reasonably develop any means to predict flight prices?"
+
+ given a route, a departure date, and the current price, should I buy the ticket, or should I wait?
