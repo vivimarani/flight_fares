@@ -25,5 +25,18 @@ import psycopg2
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 
+parquet_bucket_name = "qpxexpress_parquet"
 credentials = yaml.load(open(os.path.expanduser(~/.ssh/'qpx_express_cred.yml')))
 conn = psycopg2.connect(**credentials['qpx_express'])  # connect to API
+
+flights = spark.read.json('s3a://qpxexpress/2017/*/*/*') # spark dataframe
+# to convert RDD to DF, use .toDF()
+
+s3_conn = S3Connection(**credentials['aws'])
+
+try:
+    bucket = conn.get_bucket(parquet_bucket_name)
+except:
+    bucket = conn.create_bucket(parquet_bucket_name)
+
+flights.write.parquet('s3a://'+parquet_bucket_name)  #dumps DF to bucket as parquet

@@ -23,10 +23,11 @@
 **QPX Express API (Flight Fares) **
 
     * Send HTTP POST request to API endpoint: https://www.googleapis.com/qpxExpress/v1/trips/search
+    * more info at Final-Project-QPX-Express-API.ipynb
     
 ## Kinesis
-    * Setup Kinesis firehose on aws
-    * Specify the bucket that I want to direct the firehose to
+    * Setup Kinesis firehose on AWS using boto3 to pull data from API
+    * Specify the bucket that I want to direct the firehose to in S3
     * Use the cronjob to run test_api.py every 30 minutes
 
 
@@ -41,11 +42,13 @@
     * Store them in s3 as parquet for backup
 
 ### RDS - PostgreSQL
-    * Create 2 tables : International vs National
-    * Read data into each table using the spark script
+
+    * Create 2 tables (International vs National) via pgAdmin
+    * Read data into each table using a spark script
 
 # Synthesizing
-    * ML Lib   
+    * ML Lib
+    * Scikit-Learn
 
 # Show
     * Run Flask on a new EC2 instance, use the final_flask.py.

@@ -11,6 +11,8 @@ from psycopg2 import IntegrityError, InternalError
 import sys
 import time
 import yaml
+from boto.s3.connection import S3Connection
+from boto.s3.key import Key
 
 credentials = yaml.load(open(expanduser('~/qpx_express_cred.yml')))
 
@@ -47,23 +49,37 @@ def main(credentials, source=sys.stdin):
         http://initd.org/psycopg/docs/module.html#exceptions
     '''
 
+    query_template = 'INSERT INTO ...'
+
     conn = psycopg2.connect(**credentials['rds'])  # connect to postgres
     cur = conn.cursor()  # create a cursor
+
+    s3_conn = S3Connection(**credentials['aws'])
+    bucket = s3_conn.get_bucket('qpxexpress') #flight jsons bucket
+
+
     row_count, total_count = 0, 0
-    for flights_str in source:
-        if ... :
+    for key in bucket.list():
+        try:
+            flight_string = key.get_content_from_string(key.name)
+            flight_json = json.loads(flight_string)
+        except:
+            continue
+
+        try:
+            table_1_row = [flight_json['first'], flight_json['second']]
+            cur.execute(query_template, table_1_row)
             row_count += 1
-            row = get_flights(flights_str)
-            try:
-#               cur.execute("INSERT INTO flights VALUES")
-#           except:
-#               pass
+        except:
+            print("Something bad happened...")
+            continue
+            
         if row_count > 99:
             conn.commit()
             row_count = 0
 
 
-
+    conn.execute('')
     conn.commit()
     conn.close()
     print('Inserted {} flights'.format(total_count))
