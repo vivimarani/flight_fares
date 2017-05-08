@@ -12,7 +12,7 @@ def kin(boto_client,data):
 
 if __name__ == '__main__':
 
-    api_key = "AIzaSyBxO2z1DjQ99WERQCHGApEoi-ccxLpy4eg"
+    api_key = "-----------------------py4eg"
     url = "https://www.googleapis.com/qpxExpress/v1/trips/search?key=" + api_key
     headers = {'content-type': 'application/json'}
     params = {
