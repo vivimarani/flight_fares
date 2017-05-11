@@ -13,7 +13,7 @@
 
 ## Pipeline 
 
-<img src="my_dag.png">
+<img src="pipeline.png">
 
 One can follow the step-by-step approach to this project on the following notebooks:
 * 0 - Collect Data From API
